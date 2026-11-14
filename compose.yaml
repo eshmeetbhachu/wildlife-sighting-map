@@ -1,0 +1,22 @@
+services:
+  db:
+    image: postgis/postgis:17-3.5
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - wildlife_pgdata:/var/lib/postgresql/data
+
+  redis:
+    image: redis:8.2-alpine
+    ports:
+      - "6380:6379"
+    volumes:
+      - wildlife_redisdata:/data
+
+volumes:
+  wildlife_pgdata:
+  wildlife_redisdata:
